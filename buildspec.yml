@@ -6,11 +6,12 @@ phases:
       python: 3.9
     commands:
       - pip install pytest
-
   build:
     commands:
       - pytest test_lambda.py
-
+      - mkdir -p package
+      - cp lambda_function.py package/
+      - cd package && zip -r ../lambda.zip .
 artifacts:
   files:
-    - lambda_function.py
+    - lambda.zip
